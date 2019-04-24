@@ -30,12 +30,13 @@ public class BuncApplication extends FuncApplication {
 
 	public static void main(String[] args) throws Exception {
 		long t0 = System.currentTimeMillis();
-		BuncApplication bean = new BuncApplication();
-		bean.run();
-		System.err.println(
+		try (BuncApplication bean = new BuncApplication()) {
+			bean.run();
+			System.err.println(
 				"Started HttpServer: " + (System.currentTimeMillis() - t0) + "ms");
-		if (Boolean.getBoolean("demo.close")) {
-			bean.close();
+			if (Boolean.getBoolean("demo.close")) {
+				bean.close();
+			}
 		}
 	}
 

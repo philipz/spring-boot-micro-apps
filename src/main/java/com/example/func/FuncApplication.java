@@ -117,12 +117,13 @@ public class FuncApplication implements Runnable, Closeable,
 
 	public static void main(String[] args) throws Exception {
 		long t0 = System.currentTimeMillis();
-		FuncApplication bean = new FuncApplication();
-		bean.run();
-		System.err.println(
+		try (FuncApplication bean = new FuncApplication()) {
+			bean.run();
+			System.err.println(
 				"Started HttpServer: " + (System.currentTimeMillis() - t0) + "ms");
-		if (Boolean.getBoolean("demo.close")) {
-			bean.close();
+			if (Boolean.getBoolean("demo.close")) {
+				bean.close();
+			}
 		}
 	}
 
