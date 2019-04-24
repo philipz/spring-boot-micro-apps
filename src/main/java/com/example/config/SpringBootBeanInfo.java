@@ -137,12 +137,12 @@ class SlimPropertyDescriptor extends PropertyDescriptor {
 	}
 
 	@Override
-	public Method getReadMethod() {
+	public synchronized Method getReadMethod() {
 		return readMethod;
 	}
 
 	@Override
-	public Method getWriteMethod() {
+	public synchronized Method getWriteMethod() {
 		return writeMethod;
 	}
 }
